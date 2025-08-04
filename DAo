@@ -1,0 +1,21 @@
+const User = require('../models/User');
+class UserDAO {
+  async createUser(userData) {
+    const user = new User(userData);
+    return user.save();
+  }
+  async getUserById(userId) {
+    return User.findById(userId);
+  }
+  async updateUser(userId, updates) {
+    return User.findByIdAndUpdate(userId, updates, { new: true });
+  }
+  async deleteUser(userId) {
+    return User.findByIdAndDelete(userId);
+  }
+  async getAllUsers() {
+    return User.find({});
+  }
+}
+module.exports = new UserDAO();
+
